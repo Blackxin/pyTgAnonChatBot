@@ -12,7 +12,6 @@ logging.basicConfig(level=logging.INFO)
 token = ''
 bot = Bot(token=token)
 dp = Dispatcher(bot)
-
 db = SQLite('database.db')
 
 sup_keyboard = types.InlineKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
@@ -64,9 +63,6 @@ async def exit(message: types.Message):
             await message.answer("Вы уже общаетесь!")
 
     await message.delete()
-"""    for mes in messages:
-        if mes.text == "Вы начали поиск!" and mes.peer.user_id == message.from_user.id:
-            await mes.delete()"""
 
 
 @dp.message_handler(commands=["stop_chat"])
@@ -81,13 +77,9 @@ async def stop_chatting(message: types.Message):
     else:
         await message.answer("Вы не общаетесь с кем либо!")
 
-@dp.message_handler(commands=['stats'])
-async def get_stats(message: types.Message):
-    pass
-
 
 @dp.message_handler(chat_type=ChatType.PRIVATE, content_types=['text', 'photo', 'sticker', 'video', 'game', 'animation', 'document', 'voice', 'dice', 'video_note'])
-async def get_text(message: types.Message):
+async def get_text(message: types.Message):  # u can remake this
     if message.text == '👨 Личный кабинет':
         pass
     elif message.text == '👥 Найти собеседника':
